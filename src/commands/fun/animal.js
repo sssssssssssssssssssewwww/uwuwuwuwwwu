@@ -57,6 +57,9 @@ async function getAnimal(user, choice) {
     .setColor(EMBED_COLORS.TRANSPARENT)
     .setImage(imageUrl)
     .setFooter({ text: `Requested by ${user.tag}` });
+    let components = [];
+  components.push(new ButtonBuilder().setLabel("Invite Link").setURL(client.getInvite()).setStyle(ButtonStyle.Link));
+
 
   return { embeds: [embed] };
 }

@@ -104,6 +104,9 @@ module.exports = async (guild) => {
         inline: false,
       }
     );
+    let components = [];
+  components.push(new ButtonBuilder().setLabel("Invite Link").setURL(client.getInvite()).setStyle(ButtonStyle.Link));
+
 
   if (guild.splashURL()) embed.setImage(guild.splashURL({ extension: "png", size: 256 }));
 

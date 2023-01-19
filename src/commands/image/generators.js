@@ -87,6 +87,9 @@ module.exports = {
       .setColor(EMBED_COLORS.TRANSPARENT)
       .setImage("attachment://attachment.png")
       .setFooter({ text: `Requested by: ${message.author.tag}` });
+      let components = [];
+  components.push(new ButtonBuilder().setLabel("Invite Link").setURL(client.getInvite()).setStyle(ButtonStyle.Link));
+
 
     await message.safeReply({ embeds: [embed], files: [attachment] });
   },

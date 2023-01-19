@@ -84,9 +84,9 @@ function botInvite(client) {
     components.push(new ButtonBuilder().setLabel("Support Server").setURL(SUPPORT_SERVER).setStyle(ButtonStyle.Link));
   }
 
-  if (DASHBOARD.enabled) {
+ {
     components.push(
-      new ButtonBuilder().setLabel("Dashboard Link").setURL(DASHBOARD.baseURL).setStyle(ButtonStyle.Link)
+      new ButtonBuilder().setLabel("Upvote").setURL("https://discordbotlist.com/bots/voids-bot").setStyle(ButtonStyle.Link)
     );
   }
 

@@ -351,14 +351,14 @@ async function runModalSetup({ member, channel, guild }, targetCh) {
         new ActionRowBuilder().addComponents(
           new TextInputBuilder()
             .setCustomId("roles")
-            .setLabel("RoleId's that can take part in the giveaway")
+            .setLabel("(optional) RoleId's that can take part in the giveaway")
             .setStyle(TextInputStyle.Short)
             .setRequired(false)
         ),
         new ActionRowBuilder().addComponents(
           new TextInputBuilder()
             .setCustomId("host")
-            .setLabel("User Id hosting the giveaway")
+            .setLabel("(optional)User Id hosting the giveaway")
             .setStyle(TextInputStyle.Short)
             .setRequired(false)
         ),
@@ -474,7 +474,7 @@ async function runModalEdit(message, messageId) {
   // receive modal input
   const modal = await btnInteraction
     .awaitModalSubmit({
-      time: 1 * 60 * 1000,
+      time: 1 * 150 * 1000,
       filter: (m) => m.customId === "giveaway-modalEdit" && m.member.id === member.id && m.message.id === sentMsg.id,
     })
     .catch((ex) => {});

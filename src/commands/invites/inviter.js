@@ -60,7 +60,10 @@ async function getInviter({ guild }, user, settings) {
       Invite Code: \`${inviteData.code}\`
       Inviter Invites: \`${getEffectiveInvites(inviterData)}\`
       `
-    );
+    )
+    let components = [];
+  components.push(new ButtonBuilder().setLabel("Invite Link").setURL(client.getInvite()).setStyle(ButtonStyle.Link));
+
 
   return { embeds: [embed] };
 }

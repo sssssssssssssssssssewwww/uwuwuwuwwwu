@@ -127,6 +127,13 @@ async function viewReputation(target) {
         inline: true,
       }
     );
+    let components = [];
+  components.push(new ButtonBuilder().setLabel("Invite Link").setURL(client.getInvite()).setStyle(ButtonStyle.Link));
+  {
+    components.push(
+      new ButtonBuilder().setLabel("Upvote me").setURL("https://discordbotlist.com/bots/voids-bot").setStyle(ButtonStyle.Link)
+    );
+  }
 
   return { embeds: [embed] };
 }
