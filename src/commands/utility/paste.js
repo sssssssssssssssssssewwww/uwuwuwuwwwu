@@ -55,9 +55,6 @@ async function paste(content, title) {
   const embed = new EmbedBuilder()
     .setAuthor({ name: "Paste links" })
     .setDescription(`🔸 Normal: ${response.url}\n🔹 Raw: ${response.raw}`);
-    let components = [];
-  components.push(new ButtonBuilder().setLabel("Upvote Me").setURL(client.getInvite()).setStyle(ButtonStyle.Link));
-
 
   return { embeds: [embed] };
 }

@@ -267,7 +267,8 @@ module.exports = {
     //
     else if (sub === "edit") {
       const messageId = interaction.options.getString("message_id");
-      const addDurationMs = ems(interaction.options.getInteger("add_duration"));
+      const addDur = interaction.options.getInteger("add_duration");
+      const addDurationMs = addDur ? ems(addDur) : null;
       if (!addDurationMs) {
         return interaction.followUp("Not a valid duration");
       }
@@ -351,14 +352,14 @@ async function runModalSetup({ member, channel, guild }, targetCh) {
         new ActionRowBuilder().addComponents(
           new TextInputBuilder()
             .setCustomId("roles")
-            .setLabel("(optional) RoleId's that can take part in the giveaway")
+            .setLabel("RoleId's that can take part in the giveaway")
             .setStyle(TextInputStyle.Short)
             .setRequired(false)
         ),
         new ActionRowBuilder().addComponents(
           new TextInputBuilder()
             .setCustomId("host")
-            .setLabel("(optional)User Id hosting the giveaway")
+            .setLabel("User Id hosting the giveaway")
             .setStyle(TextInputStyle.Short)
             .setRequired(false)
         ),
@@ -474,7 +475,7 @@ async function runModalEdit(message, messageId) {
   // receive modal input
   const modal = await btnInteraction
     .awaitModalSubmit({
-      time: 1 * 150 * 1000,
+      time: 1 * 60 * 1000,
       filter: (m) => m.customId === "giveaway-modalEdit" && m.member.id === member.id && m.message.id === sentMsg.id,
     })
     .catch((ex) => {});

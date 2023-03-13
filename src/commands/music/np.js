@@ -66,9 +66,6 @@ function nowPlaying({ client, guildId }) {
         inline: false,
       }
     );
-    let components = [];
-  components.push(new ButtonBuilder().setLabel("Invite Link").setURL(client.getInvite()).setStyle(ButtonStyle.Link));
-
 
   return { embeds: [embed] };
 }

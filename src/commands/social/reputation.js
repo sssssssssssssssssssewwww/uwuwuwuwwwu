@@ -9,7 +9,7 @@ const { EMBED_COLORS } = require("@root/config");
 module.exports = {
   name: "rep",
   description: "give reputation to a user",
-  category: "STATS",
+  category: "SOCIAL",
   botPermissions: ["EmbedLinks"],
   command: {
     enabled: true,
@@ -127,13 +127,6 @@ async function viewReputation(target) {
         inline: true,
       }
     );
-    let components = [];
-  components.push(new ButtonBuilder().setLabel("Invite Link").setURL(client.getInvite()).setStyle(ButtonStyle.Link));
-  {
-    components.push(
-      new ButtonBuilder().setLabel("Upvote me").setURL("https://discordbotlist.com/bots/voids-bot").setStyle(ButtonStyle.Link)
-    );
-  }
 
   return { embeds: [embed] };
 }

@@ -12,8 +12,8 @@ const {
 } = require("discord.js");
 const { getCommandUsage, getSlashUsage } = require("@handlers/command");
 
-const CMDS_PER_PAGE = 4;
-const IDLE_TIMEOUT = 120;
+const CMDS_PER_PAGE = 5;
+const IDLE_TIMEOUT = 30;
 
 /**
  * @type {import("@structures/Command")}
@@ -108,8 +108,8 @@ async function getHelpMenu({ client, guild }) {
   // Buttons Row
   let components = [];
   components.push(
-    new ButtonBuilder().setCustomId("previousBtn").setLabel("Previours Page").setStyle(ButtonStyle.Secondary).setDisabled(true),
-    new ButtonBuilder().setCustomId("nextBtn").setLabel("Next Page").setStyle(ButtonStyle.Secondary).setDisabled(true)
+    new ButtonBuilder().setCustomId("previousBtn").setEmoji("⬅️").setStyle(ButtonStyle.Secondary).setDisabled(true),
+    new ButtonBuilder().setCustomId("nextBtn").setEmoji("➡️").setStyle(ButtonStyle.Secondary).setDisabled(true)
   );
 
   let buttonsRow = new ActionRowBuilder().addComponents(components);
@@ -120,10 +120,9 @@ async function getHelpMenu({ client, guild }) {
     .setDescription(
       "**About Me:**\n" +
         `Hello I am ${guild.members.me.displayName}!\n` +
-        "A Bot for a Good Server\n\n" +
+        "A cool multipurpose discord bot which can serve all your needs\n\n" +
         `**Invite Me:** [Here](${client.getInvite()})\n` +
-        `**Upvote Me  :** [Here](https://discordbotlist.com/bots/voids-bot)\n` +
-        `**Support Server:** [Join](https://discord.gg/cccZuDe7UY)`
+        `**Support Server:** [Join](${SUPPORT_SERVER})`
     );
 
   return {
@@ -205,7 +204,7 @@ function getSlashCategoryEmbeds(client, category) {
   if (category === "IMAGE") {
     client.slashCommands
       .filter((cmd) => cmd.category === category)
-      .forEach((cmd) => (collector += `\/${cmd.name}\\n ❯ ${cmd.description}\n\n`));
+      .forEach((cmd) => (collector += `\`/${cmd.name}\`\n ❯ ${cmd.description}\n\n`));
 
     const availableFilters = client.slashCommands
       .get("filter")
@@ -252,7 +251,7 @@ function getSlashCategoryEmbeds(client, category) {
       const subCmds = cmd.slashCommand.options?.filter((opt) => opt.type === "SUB_COMMAND");
       const subCmdsString = subCmds?.map((s) => s.name).join(", ");
 
-      return `\/${cmd.name}\\n ❯ **Description**: ${cmd.description}\n ${
+      return `\`/${cmd.name}\`\n ❯ **Description**: ${cmd.description}\n ${
         !subCmds?.length ? "" : `❯ **SubCommands [${subCmds?.length}]**: ${subCmdsString}\n`
       } `;
     });
@@ -294,10 +293,10 @@ function getMsgCategoryEmbeds(client, category, prefix) {
 
     collector +=
       "\n\nYou can use these image commands in following formats\n" +
-      `**\ ${prefix}cmd:** Picks message authors avatar as image\n` +
-      `**\ ${prefix}cmd <@member>:** Picks mentioned members avatar as image\n` +
-      `**\ ${prefix}cmd <url>:** Picks image from provided URL\n` +
-      `**\ ${prefix}cmd [attachment]:** Picks attachment image`;
+      `**${prefix}cmd:** Picks message authors avatar as image\n` +
+      `**${prefix}cmd <@member>:** Picks mentioned members avatar as image\n` +
+      `**${prefix}cmd <url>:** Picks image from provided URL\n` +
+      `**${prefix}cmd [attachment]:** Picks attachment image`;
 
     const embed = new EmbedBuilder()
       .setColor(EMBED_COLORS.BOT_EMBED)
@@ -326,7 +325,7 @@ function getMsgCategoryEmbeds(client, category, prefix) {
 
   while (commands.length) {
     let toAdd = commands.splice(0, commands.length > CMDS_PER_PAGE ? CMDS_PER_PAGE : commands.length);
-    toAdd = toAdd.map((cmd) => `**\ ${prefix}${cmd.name}** \ \n ❯ ${cmd.description}\n`);
+    toAdd = toAdd.map((cmd) => `\`${prefix}${cmd.name}\`\n ❯ ${cmd.description}\n`);
     arrSplitted.push(toAdd);
   }
 

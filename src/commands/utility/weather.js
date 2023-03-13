@@ -71,9 +71,7 @@ async function weather(place) {
       { name: "Visual Distance", value: `${json.current?.visibility} km`, inline: true },
       { name: "UV Index", value: json.current?.uv_index.toString() || "NA", inline: true }
     )
-    .setFooter({ text: `Last checked at ${json.current?.observation_time} GMT` })
-    let components = [];
-  components.push(new ButtonBuilder().setLabel("Invite Link").setURL(client.getInvite()).setStyle(ButtonStyle.Link));
+    .setFooter({ text: `Last checked at ${json.current?.observation_time} GMT` });
 
   return { embeds: [embed] };
 }

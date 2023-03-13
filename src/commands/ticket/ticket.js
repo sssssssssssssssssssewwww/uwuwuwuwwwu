@@ -333,7 +333,7 @@ async function ticketModalSetup({ guild, channel, member }, targetChannel, setti
   // receive modal input
   const modal = await btnInteraction
     .awaitModalSubmit({
-      time: 2 * 60 * 1000,
+      time: 1 * 60 * 1000,
       filter: (m) => m.customId === "ticket-modalSetup" && m.member.id === member.id && m.message.id === sentMsg.id,
     })
     .catch((ex) => {});

@@ -11,7 +11,6 @@ module.exports = {
   command: {
     enabled: true,
     usage: "[@member|id]",
-    aliases: ["pfp", "av", "ava"],
   },
 
   async messageRun(message, args) {
