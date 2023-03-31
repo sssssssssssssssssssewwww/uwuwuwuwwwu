@@ -118,9 +118,6 @@ async function getInviteLeaderboard({ guild }, author, settings) {
     .setColor(EMBED_COLORS.BOT_EMBED)
     .setDescription(collector)
     .setFooter({ text: `Requested by ${author.tag}` });
-    let components = [];
-  components.push(new ButtonBuilder().setLabel("Invite Link").setURL(client.getInvite()).setStyle(ButtonStyle.Link));
-
 
   return { embeds: [embed] };
 }
@@ -138,9 +135,6 @@ async function getRepLeaderboard(author) {
     .setColor(EMBED_COLORS.BOT_EMBED)
     .setDescription(collector)
     .setFooter({ text: `Requested by ${author.tag}` });
-    let components = [];
-  components.push(new ButtonBuilder().setLabel("Invite Link").setURL(client.getInvite()).setStyle(ButtonStyle.Link));
-
 
   return { embeds: [embed] };
 }
